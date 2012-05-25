@@ -1,0 +1,24 @@
+{
+    "name": "jasonmoo/DumbledORM",
+    "description": "A novelty PHP ORM",
+    "keywords": ["package", "database", "orm"],
+    "homepage": "https://github.com/jasonmoo/DumbledORM",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jason Mooberry",
+            "email": "jasonmoo@me.com",
+            "homepage": "http://blog.jasonmooberry.com"
+	},
+	{
+            "name": "nickl-",
+            "email": "nick@jigsoft.co.za"
+        }
+    ],
+    "bin": ["bin/generate"],
+        "autoload": {
+	      "psr-0": {"jasonmoo\\DumbledORM": "src/"
+         }
+    }
+}
