@@ -1,4 +1,5 @@
 <?php
+namespace DumbledORM;
 /**
  *
  *  DumbledORM
@@ -104,7 +105,7 @@ abstract class Builder {
         }
       }
     }
-    $basetables = "<?php\nspl_autoload_register(function(\$class) { @include(__DIR__.\"/\$class.class.php\"); });\n";
+    $basetables = "<?php\nnamespace DumbledORM;\n\nspl_autoload_register(function(\$class) { @include(__DIR__.\"/\$class.class.php\"); });\n";
     foreach ($tables as $table => $conf) {
       $relations = preg_replace('/[\n\t\s]+/','',var_export((array)@$conf['relations'],true));
       $meta = isset($conf['meta']) ? "\$meta_class = '{$conf['meta']['class']}', \$meta_field = '{$conf['meta']['field']}'," : '';
@@ -115,7 +116,7 @@ abstract class Builder {
     foreach (array_keys($tables) as $table) {
       $file = "./$dir/$prefix".self::camelCase($table).'.class.php';
       if (!file_exists($file)) {
-        file_put_contents($file,"<?php\nclass ".$prefix.self::camelCase($table).' extends '.$prefix.self::camelCase($table).'Base {}');
+        file_put_contents($file,"<?php\nnamespace DumbledORM;\n\nclass ".$prefix.self::camelCase($table).' extends '.$prefix.self::camelCase($table).'Base {}');
       }
     }
   }

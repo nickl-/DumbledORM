@@ -1,7 +1,9 @@
 <?php
+namespace DumbledORM;
+
+require 'bootstrap.php';
 $dbname = DbConfig::DBNAME;
-require('dumbledorm.php');
-class OrmTestException extends Exception {}
+class OrmTestException extends \Exception {}
 class OrmTest {
   public static $fails = 0;
   public static function assertTrue($message,$test) {

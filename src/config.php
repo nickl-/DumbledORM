@@ -1,4 +1,6 @@
 <?php
+namespace DumbledORM;
+
 class DbConfig {
   const HOST = 'localhost';
   const PORT = 3306;
