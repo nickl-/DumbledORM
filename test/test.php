@@ -1,10 +1,4 @@
 <?php 
-class DbConfig {
-  const HOST = 'localhost';
-  const DBNAME = 'dumbledorm_test_db'; 
-  const USER = 'root';
-  const PASSWORD = 'password';
-}
 $dbname = DbConfig::DBNAME;
 require('dumbledorm.php');
 class OrmTestException extends Exception {}
