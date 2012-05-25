@@ -1,4 +1,4 @@
-<?php 
+<?php
 $dbname = DbConfig::DBNAME;
 require('dumbledorm.php');
 class OrmTestException extends Exception {}
@@ -18,8 +18,8 @@ class OrmTest {
 }
 try {
   $db = mysql_connect(DbConfig::HOST,DbConfig::USER,DbConfig::PASSWORD);
-  mysql_query("drop database if exists $dbname",$db); 
-  mysql_query("create database $dbname",$db); 
+  mysql_query("drop database if exists $dbname",$db);
+  mysql_query("create database $dbname",$db);
   mysql_close($db);
   Db::pdo();
   OrmTest::assertTrue("Creating test database $dbname.",true);
@@ -80,45 +80,45 @@ try {
 try {
   foreach (array('Jason','Jim','Jerri','Al') as $name) {
     $user = new User(array(
-      'name' => $name, 
-      'email' => "$name@not_a_domain.com", 
-      'created_at' => new PlainSql('NOW()'), 
-      'active' => 1, 
+      'name' => $name,
+      'email' => "$name@not_a_domain.com",
+      'created_at' => new PlainSql('NOW()'),
+      'active' => 1,
     ));
     $user->save();
   }
   OrmTest::assertTrue('Testing save() on new object.',is_numeric($user->getId()));
-  
+
   $user->setName("$name Johnson")->save();
   OrmTest::assertTrue('Testing updating field on hydrated object.',$user->getName() === "$name Johnson");
   $user->setName($name)->save();
-  
+
   $id = $user->getId();
-  
+
   $user = new User($id);
   OrmTest::assertTrue('Testing fetching object by id on new object.',$user->getName() === $name);
 
   $users = User::select('1=?',1);
   OrmTest::assertTrue('Testing fetching objects by select() method.',count($users) === 4 and $users->current()->getName() !== '');
   OrmTest::assertTrue('Testing array access by id of results set.',$users[$id]->getName() !== '');
-  
+
   $users = User::find(array('active'=>1));
   OrmTest::assertTrue('Testing fetching objects by find() method.',count($users) === 4 and $users->current()->getName() !== '');
-  
+
   $user = User::one(array('name' => 'Jason'));
   OrmTest::assertTrue('Testing fetching object by one() method.',$user->getName() === 'Jason');
-  
+
   $phone = $user->create(new PhoneNumber(array(
-    'type' => 'home', 
-    'number' => '607-000-0000', 
+    'type' => 'home',
+    'number' => '607-000-0000',
   )));
   OrmTest::assertTrue('Testing create new object through create() method.',$phone instanceof PhoneNumber and $phone->getUserId() === $user->getId());
-  
+
   foreach (array(111,222,333,444,555) as $prefix) {
     $user->create(new PhoneNumber(array(
-      'type' => 'home', 
+      'type' => 'home',
       'number' => '607-'.$prefix.'-0000',
-      'location' => null,  
+      'location' => null,
     )))->save();
   }
 
@@ -133,28 +133,28 @@ try {
   OrmTest::assertTrue('Checking to see if method application applied correctly.',count($phones) === 5);
 
   OrmTest::assertTrue('Testing getRelationClassName style magic method (singular).',$user->getPhoneNumber()->getLocation() === 'Ithaca, NY');
-  OrmTest::assertTrue('Testing getRelationClassName style magic method (list) .',count($user->getPhoneNumber(true)) === 5 and $user->getPhoneNumber(true)->current()->getLocation() === 'Ithaca, NY');  
+  OrmTest::assertTrue('Testing getRelationClassName style magic method (list) .',count($user->getPhoneNumber(true)) === 5 and $user->getPhoneNumber(true)->current()->getLocation() === 'Ithaca, NY');
   OrmTest::assertTrue('Testing getRelationClassName style magic method (custom) .',$user->getPhoneNumber('`number` like ?',"%111%")->current()->getNumber() === '607-111-0000');
 
-  
+
   $post = $user->create(new Post(array(
-    'title' => 'test post', 
-    'body' => "I ain't got no body..", 
+    'title' => 'test post',
+    'body' => "I ain't got no body..",
   )));
   $post->addMeta(array(
-    'background' => 'blue', 
-    'border' => '1px solid grey', 
+    'background' => 'blue',
+    'border' => '1px solid grey',
   ));
   $post->setMeta('border','2px solid white');
   OrmTest::assertTrue('Testing addMeta(), setMeta() and getMeta() methods.',$post->getMeta('background') === 'blue' and $post->getMeta('border') === '2px solid white');
-  
+
   $post->save();
   $post = $user->getPost();
   OrmTest::assertTrue('Testing getMeta() methods after save().',$post->getMeta('background') === 'blue' and $post->getMeta('border') === '2px solid white');
-  
+
   $post->delete();
-  OrmTest::assertTrue('Testing delete() method on an object.',count($user->getPost(true)) === 0);  
-  
+  OrmTest::assertTrue('Testing delete() method on an object.',count($user->getPost(true)) === 0);
+
   OrmTest::assertTrue('Testing complete. ('.OrmTest::$fails.' fails)',!OrmTest::$fails);
 
   Db::execute("drop database $dbname");
@@ -163,4 +163,4 @@ try {
   Db::execute("drop database $dbname");
   exec("read -p 'Press enter to delete the test directory named: $dbname  OR CTRL+C TO ABORT'; rm -rf $dbname");
   throw new OrmTestException('Testing failed with a quickness! ('.$e->getMessage().')');
-} 
+}
