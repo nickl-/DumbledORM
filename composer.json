@@ -10,15 +10,16 @@
             "name": "Jason Mooberry",
             "email": "jasonmoo@me.com",
             "homepage": "http://blog.jasonmooberry.com"
-	},
-	{
+	      },
+	      {
             "name": "nickl-",
             "email": "nick@jigsoft.co.za"
         }
     ],
     "bin": ["bin/generate"],
-        "autoload": {
-	      "psr-0": {"DumbledORM": "src/"
-         }
+    "autoload": {
+        "psr-0": {
+            "DumbledORM": "src/"
+        }
     }
 }
