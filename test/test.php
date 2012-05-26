@@ -1,7 +1,11 @@
 <?php
-namespace DumbledORM;
-
 require 'bootstrap.php';
+
+use DumbledORM\Builder;
+use DumbledORM\Db;
+use DumbledORM\DbConfig;
+use DumbledORM\PlainSql;
+
 $dbname = DbConfig::DBNAME;
 class OrmTestException extends \Exception {}
 class OrmTest {
