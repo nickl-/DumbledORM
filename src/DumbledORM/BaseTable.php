@@ -306,4 +306,7 @@ abstract class BaseTable {
     $this->meta = new ResultSet((array)@$meta);
   }
 
+  public function __toString() {
+      return json_encode($this->toArray(), JSON_FORCE_OBJECT | JSON_NUMERIC_CHECK);
+  }
 }

@@ -43,6 +43,17 @@ use \ArrayIterator;
 final class ResultSet extends ArrayIterator {
 
   /**
+   * overwritten getArrayCopy to also include all entities as arrays
+   *
+   * @return an array copy of the ResultSet with entity arrays
+   */
+  public function getArrayCopy() {
+    $array = parent::getArrayCopy();
+    array_walk($array, create_function('&$a', '$a = $a->toArray();'));
+    return $array;
+  }
+
+  /**
    * magic method for applying called methods to all members of result set
    *
    * @param string $method
@@ -56,4 +67,7 @@ final class ResultSet extends ArrayIterator {
     return $this;
   }
 
+  public function __toString() {
+      return json_encode($this->getArrayCopy());
+  }
 }
