@@ -5,8 +5,8 @@ use DumbledORM\Builder;
 use DumbledORM\Db;
 use DumbledORM\DbConfig;
 use DumbledORM\PlainSql;
-
-$dbname = DbConfig::DBNAME;
+$dbname = "test_DumbledORM_".time(); // since db gets created and dropped agan we don't use configured db.
+DbConfig::$DBNAME = $dbname;
 class OrmTestException extends \Exception {}
 class OrmTest {
   public static $fails = 0;
