@@ -1,5 +1,5 @@
 {
-    "name": "jasonmoo/DumbledORM",
+    "name": "nickl-/DumbledORM",
     "description": "A novelty PHP ORM",
     "keywords": ["package", "database", "orm"],
     "homepage": "https://github.com/jasonmoo/DumbledORM",
@@ -17,6 +17,12 @@
         }
     ],
     "bin": ["bin/generate"],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/nickl-/DumbledORM"
+        }
+    ],
     "autoload": {
         "psr-0": {
             "DumbledORM": "src/"
