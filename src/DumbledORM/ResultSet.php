@@ -49,7 +49,9 @@ final class ResultSet extends ArrayIterator {
    */
   public function getArrayCopy() {
     $array = parent::getArrayCopy();
-    array_walk($array, create_function('&$a', '$a = $a->toArray();'));
+    array_walk($array, function (&$a) {
+                          $a = $a->toArray();
+                       });
     return $array;
   }
 

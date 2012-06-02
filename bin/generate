@@ -5,7 +5,7 @@ set_error_handler(function () {
   exit(1);
 }, E_ALL);
 
-require_once dirname(__DIR__).'/vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 restore_error_handler();
 

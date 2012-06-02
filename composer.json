@@ -23,9 +23,13 @@
             "url": "https://github.com/nickl-/DumbledORM"
         }
     ],
+    "config": {
+        "bin-dir": "bin/"
+    },
     "autoload": {
         "psr-0": {
-            "DumbledORM": "src/"
+            "DumbledORM": "src/",
+            "": "bin/"
         }
     }
 }

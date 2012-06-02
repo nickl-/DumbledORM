@@ -3,8 +3,9 @@ require 'bootstrap.php';
 
 use DumbledORM\Builder;
 use DumbledORM\Db;
-use DumbledORM\DbConfig;
 use DumbledORM\PlainSql;
+use DumbledORMDbConfig as DbConfig;
+
 $dbname = "test_DumbledORM_".time(); // since db gets created and dropped agan we don't use configured db.
 DbConfig::$DBNAME = $dbname;
 class OrmTestException extends \Exception {}

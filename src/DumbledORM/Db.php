@@ -1,7 +1,6 @@
 <?php
 namespace DumbledORM;
 
-use PDO;
 /**
  *
  *  DumbledORM
@@ -34,6 +33,9 @@ use PDO;
  *  THE SOFTWARE.
  *
  */
+
+use PDO;
+use DumbledORMDbConfig as DbConfig;
 
 /**
  * thin wrapper for PDO access

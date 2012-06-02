@@ -33,7 +33,7 @@ namespace DumbledORM;
  *  THE SOFTWARE.
  *
  */
-
+use \BadMethodCallException;
 /**
  * base functionality available to all objects extending from a generated base class
  *
@@ -304,6 +304,15 @@ abstract class BaseTable {
       $meta[$obj->getKey()] = $obj;
     }
     $this->meta = new ResultSet((array)@$meta);
+  }
+
+  public function getForList() {
+    return (object)array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'description' => $this->getDescription(),
+            'link' => array('rel' => 'location', 'href' => $this->getId()),
+    );
   }
 
   public function __toString() {
