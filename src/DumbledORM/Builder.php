@@ -1,7 +1,6 @@
 <?php
 namespace DumbledORM;
 
-use PDO;
 /**
  *
  *  DumbledORM
@@ -35,6 +34,7 @@ use PDO;
  *
  */
 
+use PDO;
 /**
  * Builder class for required for generating base classes
  *

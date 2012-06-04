@@ -35,7 +35,6 @@ namespace DumbledORM;
  */
 
 use PDO;
-use DumbledORMDbConfig as DbConfig;
 
 /**
  * thin wrapper for PDO access

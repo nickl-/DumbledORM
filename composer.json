@@ -16,7 +16,7 @@
             "email": "nick@jigsoft.co.za"
         }
     ],
-    "bin": ["bin/generate"],
+    "bin": ["bin/generate","src/DumbledORM/DbConfig.php"],
     "repositories": [
         {
             "type": "vcs",
@@ -25,8 +25,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "DumbledORM": "src/",
-            "": "bin/"
+            "DumbledORM": "src/"
         }
     }
 }

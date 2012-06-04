@@ -1,5 +1,7 @@
 <?php
-class DumbledORMDbConfig {
+namespace DumbledORM;
+
+class DbConfig {
   const HOST = '127.0.0.1';
   const PORT = 3306;
   static $DBNAME = 'sat_repo_product';
